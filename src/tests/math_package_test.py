@@ -13,4 +13,4 @@ class TestClass:
         assert subtract_function(1, 2) == -1
 
     def test_four(self):
-        assert add_function(2, 2) == 0
+        assert subtract_function(2, 2) == 0

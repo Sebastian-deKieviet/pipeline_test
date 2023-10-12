@@ -26,14 +26,11 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-  displayName: 'Install pytest'
-
-- script: |
-    cd $(Build.Repository.LocalPath)
-    python -m pytest $(Build.Repository.LocalPath)/tests/*.py --junitxml=test-unit.xml
-  displayName: 'Run Unit Tests'
+    pip install pytest-cov
+    pytest --doctest-modules --junitxml=junit/test-results.xml --cov=. --cov-report=xml
+  displayName: 'pytest'
 
 - task: PublishTestResults@2
   inputs:
     testResultsFormat: 'JUnit'
-    testResultsFiles: 'test-unit.xml'
+    testResultsFiles: '**/test-*.xml' 

@@ -30,7 +30,7 @@ steps:
 
 - script: |
     cd $(Build.Repository.LocalPath)
-    python -m pytest $(Build.Repository.LocalPath)/tests/unit/test_*.py --junitxml=test-unit.xml
+    python -m pytest $(Build.Repository.LocalPath)/tests/*.py --junitxml=test-unit.xml
   displayName: 'Run Unit Tests'
 
 - task: PublishTestResults@2

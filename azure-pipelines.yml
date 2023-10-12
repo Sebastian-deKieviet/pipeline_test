@@ -26,11 +26,14 @@ steps:
 
 - script: |
     pip install pytest pytest-azurepipelines
-    pytest
-  displayName: 'pytest'
+  displayName: 'Install pytest'
+
+- script: |
+    cd $(Build.Repository.LocalPath)
+    python -m pytest $(Build.Repository.LocalPath)/tests/unit/test_*.py --junitxml=test-unit.xml
+  displayName: 'Run Unit Tests'
 
 - task: PublishTestResults@2
-  condition: succeededOrFailed()
   inputs:
-    testResultsFiles: '**/test-*.xml'
-    testRunTitle: 'Publish test results for Python $(python.version)'
+    testResultsFormat: 'JUnit'
+    testResultsFiles: 'test-unit.xml'

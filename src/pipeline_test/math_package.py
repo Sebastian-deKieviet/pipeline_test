@@ -26,7 +26,7 @@ def add_function(
     _check_if_number(num2)
 
     # Perform function
-    return num1+num2
+    return num1+num1
 
 def subtract_function(
         num1: int | float,
